@@ -74,7 +74,7 @@
                 </div>
                 <div class="row">
                     <div class="center">
-                        <p><span id = "myLetter" class="orangeText"> {{ letterPop }}</span><small id="myWord"></small></p>
+                        <p><span id = "myLetter" class="orangeText" v-show="isPlay"> {{ letterPop | filterLetterPop(testMode,testLevel) }}</span><small id="myWord"></small></p>
                         <p><span id = "message" class="orangeText"> {{ message }}</span></p>
                         <p id = "note"> {{ note }}</p>
                         <p><span id = "myInput">{{ inputStr.join("") }}</span></p> 

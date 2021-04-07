@@ -31,6 +31,24 @@ var app = new Vue({
     testMode: '练习',
     testLevel: '幼儿',
   },
+  filters: {
+    filterLetterPop: function (value, testMode, testLevel) {
+      let length = value.length
+      let endIndex = length > 3 ? 3 : 2
+      let repStr = length >3 ? '_ _' : '_'
+      let testL = {
+        '幼儿': value,
+        '学霸': value.replace(value.slice(1, endIndex), repStr),
+        '学神': ' '
+      }
+      console.log('testL[testLevel]', testLevel, testMode)
+      if (testMode === '测试') {
+        return testL[testLevel]
+      }else if(testMode === '练习'){
+        return value
+      }
+    }
+  },
   methods:{
     // 加载词库
     loadLetterDb: function(letterDbs){
@@ -40,6 +58,10 @@ var app = new Vue({
       console.log(this.letterDb)
     },
     loadLetter: function(){
+      if (this.testMode == '测试'){
+        this.isSpeak = true;
+
+      }
       this.letterPop = this.letterDb.pop()
       console.log(this.letterPop)
       this.speakText(this.letterPop)
@@ -84,7 +106,7 @@ var app = new Vue({
       this.speakText("The End!");
       this.speakText(note);
     }
-  }
+  },
 });
 
 app.loadLetterDb(letterDbs);
