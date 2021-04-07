@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>大象英语</title> 
+<link rel="icon" href="img/favicon.png">
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+ 
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="js/jquery-3.6.0.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- 引入element-ui样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+<!-- 最新的 VUE 文件 -->
+<script src="js/vue.min.js"></script>
+<!-- script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+
+<!-- 引入element-ui组件库，这个必须在vue之后，否则不起作用 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<!-- 用户自定义js文件 -->
+<script src="js/letterDB.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+<div class="container main" id="app">
+    <div class="row">
+        <div class="col-lg-3">
+           <div class="panel panel-info userInfo">
+                <div class="panel-heading">
+                    <h3 class="panel-title">用户信息</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="userLine">呢称:<span v-html="myInfo.name"></span></div>
+                    <div class="userLine">等级:<span v-html="myInfo.level"></span></div>
+                    <div class="userLine">开始时间:<span v-html="myInfo.startTime"></span></div>
+                    <div class="userLine">练习次数:<span v-html="myInfo.exerciseCount"></span></div>
+                    <div class="userLine">练习单词量:<span v-html="myInfo.studyLetters"></span></div>
+                    <div class="userLine">掌握单词量:<span v-html="myInfo.knowLetters"></span></div>
+                
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+                <div class="row">
+                    <div class="panel panel-info studyInfo">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">学习信息【<span v-html="levelNum"></span>】</h3>
+                        </div>
+                        <div class="panel-body">
+                              <div class="col-lg-6">正确<span id="right_label">{{ rightCount }}</span>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-success" role="progressbar"
+                                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: rightCount + '%' }">
+                                        <span class="sr-only">40% 完成</span>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="col-lg-6">错误<span id="error_label">{{ errorCount }}</span>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar"
+                                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: errorCount + '%' }">
+                                        <span class="sr-only">40% 完成</span>
+                                    </div>
+                                </div>
+                              </div>      
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="center">
+                        <p><span id = "myLetter" class="orangeText"> {{ letterPop }}</span><small id="myWord"></small></p>
+                        <p><span id = "message" class="orangeText"> {{ message }}</span></p>
+                        <p id = "note"> {{ note }}</p>
+                        <p><span id = "myInput">{{ inputStr.join("") }}</span></p> 
+                    </div>
+                </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="panel panel-info headerInfo">
+                    <div class="panel-body">
+                    <p>提示:按Shift键可以提前结束哦!看到单词后直接敲击键盘即可</p>
+                    <p><el-switch v-model="isSpeak" inactive-text="开启拼读"></el-switch></p>
+                        <p>模式选择：<el-radio-group v-model="testMode" size="mini">
+                            <el-radio-button label="练习"></el-radio-button>
+                            <el-radio-button label="测试"></el-radio-button>
+                            </el-radio-group></p>
+                        <p v-show="testMode==='测试'">级别：<el-radio-group v-model="testLevel" size="mini">
+                            <el-radio-button label="幼儿"></el-radio-button>
+                            <el-radio-button label="学霸"></el-radio-button>
+                            <el-radio-button label="学神"></el-radio-button>
+                        </el-radio-group></p>
+                        词库：<div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">选择级别 
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#level1" class="level">Level 1</a></li>
+                            <li><a href="#level2" class="level">Level 2</a></li>
+                            <li><a href="#level3" class="level">Level 3</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#level4" class="level">Level 4</a></li>
+                            <li><a href="#level4" class="level">Level 5</a></li>
+                            <li><a href="#level4" class="level">Level 6</a></li>
+                        </ul>
+                    </div>
+
+                    </div>
+                <!--<button type="button" class="btn btn-info" id="exit">Exit</button>-->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 footer">
+        <small>软件开发：吴喜伟 &nbsp;&nbsp;&nbsp;时间：2021年4月<br>Email：85207476@qq.com</small>
+        </div>
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"  data-backdrop="static" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">大象英语</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <span class="input-group-addon">呢称</span>
+                        <input type="text" id="username" v-model="my_user" class="form-control" placeholder="Emilier">
+                    </div>
+                    <div id="tip"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="submitUser">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+<!--自定义的vue对象必须在组件加载完成的才能引入，否则提示找到组件。-->
+<script src="js/main.vue.js"></script>
+<script src="js/keyDown.js"></script>
+</body>
+</html>

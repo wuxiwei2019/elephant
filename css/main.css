@@ -1,0 +1,55 @@
+body{
+    background-image: url('../img/background.png');
+    background-size: cover;
+    text-align: center;
+}
+.main{
+    margin-top:50px;
+    width:90%;
+}
+.left50{
+    margin-left:50px;
+}
+.right50{
+    margin-right:50px;
+}
+button{
+    margin-left:50px;
+}
+.center{
+    margin: auto;
+}
+span.orangeText{
+    color:orange;
+    font-size: 80px;
+}
+#myInput{
+    color:green;
+    font-size: 80px;
+}
+#username{
+}
+.userLine{
+    padding-top: 10px;
+    text-transform:capitalize;
+}
+.studyInfo{
+    width: 100%;
+    height:100px;
+    z-index:3;
+}
+.userInfo{
+    height:500px;
+    z-index:-1;
+    opacity:0.7;
+    text-align:left;
+}
+.headerInfo{
+    text-align:left;
+    height:500px;
+    z-index:2;
+    opacity:0.7;
+}
+.footer{
+    margin-top:50px;
+}
