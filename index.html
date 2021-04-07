@@ -74,7 +74,7 @@
                 </div>
                 <div class="row">
                     <div class="center">
-                        <p><span id = "myLetter" class="orangeText" v-show="isPlay"> {{ letterPop | filterLetterPop(testMode,testLevel) }}</span><small id="myWord"></small></p>
+                        <p><span id = "myLetter" class="orangeText" v-show="isPlay"> {{ letterPop | filterLetterPop(testMode,testLevel) }}</span><el-button type="success" icon="el-icon-headset" v-show="isPlay" v-on:click="speakText(letterPop)" circle></el-button><small id="myWord"></small></p>
                         <p><span id = "message" class="orangeText"> {{ message }}</span></p>
                         <p id = "note"> {{ note }}</p>
                         <p><span id = "myInput">{{ inputStr.join("") }}</span></p> 
@@ -86,7 +86,7 @@
                     <div class="panel-body">
                     <p>提示:按Shift键可以提前结束哦!看到单词后直接敲击键盘即可</p>
                     <p><el-switch v-model="isSpeak" inactive-text="开启拼读"></el-switch></p>
-                        <p>模式选择：<el-radio-group v-model="testMode" size="mini">
+                        <p>模式选择：<el-radio-group v-model="testMode" size="mini" v-on:change="changeTestMode">
                             <el-radio-button label="练习"></el-radio-button>
                             <el-radio-button label="测试"></el-radio-button>
                             </el-radio-group></p>

@@ -16,16 +16,16 @@ var app = new Vue({
       studyLetters: 0,  // 练习单词总数量
       knowLetters: 0,  // 掌握单词数量
     },
-    letterDb: [],
-    letterPop: '',
+    letterDb: [], //加载的单词库
+    letterPop: '', //新单词
     inputStr: [],
     studyCount: 0, //练习单词数量
     rightCount: 0, //练习正确数量
     errorCount: 0, //练习错误数量
     isPlay: false, //是否开始标识
     levelNum: 'level1', // 练习级别
-    my_user: '',
-    isSpeak: false,
+    my_user: '', // 当前用户
+    isSpeak: false, // 是否开启拼读
     message: '',
     note:'',
     testMode: '练习',
@@ -50,6 +50,15 @@ var app = new Vue({
     }
   },
   methods:{
+    // 检测模式
+    changeTestMode: function(){
+      console.log('changeTestMode()', this.testMode)
+      if (this.testMode === '练习'){
+        this.isSpeak = false
+      }else if(this.testMode === '测试'){
+        this.isSpeak = true
+      }
+    },
     // 加载词库
     loadLetterDb: function(letterDbs){
       this.letterDb = []
@@ -101,6 +110,9 @@ var app = new Vue({
       this.note = "你这次一共练习" + this.studyCount +"个单词，正确" + this.rightCount + "个,按Ctrl键重新开始！";
       this.myInfo.exerciseCount = parseInt(this.myInfo.exerciseCount) + 1;
       this.myInfo.studyLetters = parseInt(this.myInfo.studyLetters) + this.studyCount;
+      if (this.testMode === '测试'){
+        this.myInfo.knowLetters = parseInt(this.myInfo.knowLetters) + this.rightCount;
+      }
       localStorage.setItem(this.my_user, JSON.stringify(this.myInfo))
       this.isPlay = false;
       this.speakText("The End!");
