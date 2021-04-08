@@ -4,6 +4,7 @@
 * @Last Modified by:   Administrator
 * @Last Modified time: 2021-04-06 18:32:37
 */
+
 var app = new Vue({
   el: '#app',
   data: {
@@ -25,6 +26,7 @@ var app = new Vue({
     rightLetters: [], // 练习正确的单词数组
     isPlay: false, //是否开始标识
     isStudyAll: false, // 是否全量练习
+    isFinger: false, // 指法提醒
     levelNum: 'level1', // 练习级别
     my_user: '', // 当前用户
     isSpeak: false, // 是否开启拼读
@@ -32,6 +34,19 @@ var app = new Vue({
     note:'',
     testMode: '练习',
     testLevel: '幼儿',
+    levelRange: [10,20],
+    dialogFormVisible: false,
+    form: {
+      name: '',
+      region: '',
+      date1: '',
+      date2: '',
+      delivery: false,
+      type: [],
+      resource: '',
+      desc: ''
+    },
+    formLabelWidth: '120px'
   },
   filters: {
     filterLetterPop: function (value, testMode, testLevel) {

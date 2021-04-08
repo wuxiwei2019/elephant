@@ -50,10 +50,10 @@
                 <div class="row">
                     <div class="panel panel-info studyInfo">
                         <div class="panel-heading">
-                            <h3 class="panel-title">学习信息【<span v-html="levelNum"></span>】</h3>
+                            <h3 class="panel-title">练习区【<span v-html="levelNum"></span>】</h3>
                         </div>
                         <div class="panel-body">
-                              <div class="col-sm-6 col-lg-6">正确<span id="right_label">{{ rightCount }}</span>
+                              <div class="col-sm-6 col-lg-6">正确「<span id="right_label">{{ rightCount }}</span>」
                                 <div class="progress progress-striped active">
                                     <div class="progress-bar progress-bar-success" role="progressbar"
                                          aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: rightCount + '%' }">
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                               </div>
-                              <div class="col-sm-6 col-lg-6">错误<span id="error_label">{{ errorCount }}</span>
+                              <div class="col-sm-6 col-lg-6">错误「<span id="error_label">{{ errorCount }}</span>」
                                 <div class="progress progress-striped active">
                                     <div class="progress-bar progress-bar-danger" role="progressbar"
                                          aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ width: errorCount + '%' }">
@@ -84,8 +84,13 @@
         <div class="col-sm-3 col-lg-3">
             <div class="panel panel-info headerInfo">
                     <div class="panel-body">
-                        <p>提示:按Shift键可以提前结束哦!看到单词后直接敲击键盘即可</p>
-                        <p><el-switch v-model="isSpeak" inactive-text="开启拼读"></el-switch></p>
+                        <p>
+                            <el-button type="primary" round size="mini" @click="dialogFormVisible = true">我的成绩</el-button>
+                            <el-button type="primary" round size="mini">练习记录</el-button>
+                        </p>
+                        <p><span class="label label-danger">提示</span>:按Shift键可以提前结束哦!看到单词后直接敲击键盘,Enter或空格键确认输入</p>
+                        <p><el-switch v-model="isSpeak" inactive-text="单词拼读"></el-switch></p>
+                        <p><el-switch v-model="isFinger" inactive-text="指法提示"></el-switch></p>
                         <p><el-switch v-model="isStudyAll" inactive-text="特殊训练" active-text="全量练习"></el-switch></p>
                         <p>模式选择：<el-radio-group v-model="testMode" size="mini" v-on:change="changeTestMode">
                             <el-radio-button label="练习"></el-radio-button>
@@ -96,20 +101,27 @@
                             <el-radio-button label="学霸"></el-radio-button>
                             <el-radio-button label="学神"></el-radio-button>
                         </el-radio-group></p>
-                        词库：<div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">选择级别
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#level1" class="level">Level 1</a></li>
-                            <li><a href="#level2" class="level">Level 2</a></li>
-                            <li><a href="#level3" class="level">Level 3</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#level4" class="level">Level 4</a></li>
-                            <li><a href="#level4" class="level">Level 5</a></li>
-                            <li><a href="#level4" class="level">Level 6</a></li>
-                        </ul>
-                    </div>
+                        <p title="词库每级100个单词，1表示1-10，2表示11-20，以次类推！" data-toggle="tooltip"
+                           data-placement="top" >
+                            单词范围：<el-input-number v-model="levelRange"  :min="1" :max="10" label="描述文字" size="mini">
+                            </el-input-number>
+                        </p>
+                            词库：<div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">选择级别
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#level1" class="level">Level 1</a></li>
+                                <li><a href="#level2" class="level">Level 2</a></li>
+                                <li><a href="#level3" class="level">Level 3</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#level4" class="level">Level 4</a></li>
+                                <li><a href="#level4" class="level">Level 5</a></li>
+                                <li><a href="#level4" class="level">Level 6</a></li>
+                            </ul>
+                            </div>
+
+
                     </div>
                 <!--<button type="button" class="btn btn-info" id="exit">Exit</button>-->
             </div>
@@ -140,6 +152,23 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
     </div>
+    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+        <el-form :model="form">
+            <el-form-item label="活动名称" :label-width="formLabelWidth">
+                <el-input v-model="form.name" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="活动区域" :label-width="formLabelWidth">
+                <el-select v-model="form.region" placeholder="请选择活动区域">
+                    <el-option label="区域一" value="shanghai"></el-option>
+                    <el-option label="区域二" value="beijing"></el-option>
+                </el-select>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+        </div>
+    </el-dialog>
 </div>
 <!--自定义的vue对象必须在组件加载完成的才能引入，否则提示找到组件。-->
 <script src="js/main.vue.js"></script>

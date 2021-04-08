@@ -5,6 +5,7 @@
 * @Last Modified time: 2021-04-06 18:22:31
 */
 console.log("loading keyDown.js");
+$(function () { $("[data-toggle='tooltip']").tooltip(); });
 $(document).ready(function(){
     Date.prototype.format = function(fmt){
         var o = {
