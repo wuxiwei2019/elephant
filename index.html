@@ -86,6 +86,7 @@
                     <div class="panel-body">
                         <p>提示:按Shift键可以提前结束哦!看到单词后直接敲击键盘即可</p>
                         <p><el-switch v-model="isSpeak" inactive-text="开启拼读"></el-switch></p>
+                        <p><el-switch v-model="isStudyAll" inactive-text="特殊训练" active-text="全量练习"></el-switch></p>
                         <p>模式选择：<el-radio-group v-model="testMode" size="mini" v-on:change="changeTestMode">
                             <el-radio-button label="练习"></el-radio-button>
                             <el-radio-button label="测试"></el-radio-button>

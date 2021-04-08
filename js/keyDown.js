@@ -39,6 +39,7 @@ $(document).ready(function(){
             app.myInfo.exerciseCount = userInfo.exerciseCount;
             app.myInfo.studyLetters = userInfo.studyLetters;
             app.myInfo.knowLetters = userInfo.knowLetters;
+            app.myInfo.knowLetterList = userInfo.knowLetterList;
         }else{
             app.myInfo.name=my_user;
             app.myInfo.startTime= new Date().format("yyyy年MM月dd日");
@@ -71,8 +72,8 @@ $(document).ready(function(){
                 localStorage.my_user = app.my_user;
                 $("#myModal").modal("hide");
                 alert("记住你的呢称，下次玩的时候好用。");
-                app.init();
                 loadStudyInfo(app.my_user);
+                app.init();
             }
 
         });

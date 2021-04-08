@@ -24,6 +24,7 @@ var app = new Vue({
     errorCount: 0, //练习错误数量
     rightLetters: [], // 练习正确的单词数组
     isPlay: false, //是否开始标识
+    isStudyAll: false, // 是否全量练习
     levelNum: 'level1', // 练习级别
     my_user: '', // 当前用户
     isSpeak: false, // 是否开启拼读
@@ -67,11 +68,19 @@ var app = new Vue({
       this.letterDb = [...letterDbs[this.levelNum]]// ES6 深复制
       console.log(this.letterDb)
     },
+    // 从加载词库弹出一个单词
     loadLetter: function(){
-      if (this.testMode == '测试'){
+      if (this.testMode === '测试'){
         this.isSpeak = true;
       }
-      this.letterPop = this.letterDb.pop()
+      let letter = this.letterDb.pop()
+      if (!this.isStudyAll){
+        // 如果单词在已掌握的词库中，则重新获取新的
+        while (this.myInfo.knowLetterList.indexOf(letter) >= 0){
+          letter = this.letterDb.pop()
+        }
+      }
+      this.letterPop = letter
       console.log(this.letterPop)
       this.speakText(this.letterPop)
     },
