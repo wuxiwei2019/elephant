@@ -4,7 +4,6 @@
 * @Last Modified by:   Administrator
 * @Last Modified time: 2021-04-06 18:32:37
 */
-
 var app = new Vue({
   el: '#app',
   data: {
@@ -15,13 +14,15 @@ var app = new Vue({
       exerciseCount: 0 , // 练习次数
       studyLetters: 0,  // 练习单词总数量
       knowLetters: 0,  // 掌握单词数量
+      knowLetterList: [] //掌握单词库
     },
     letterDb: [], //加载的单词库
     letterPop: '', //新单词
-    inputStr: [],
+    inputStr: [], //键盘输入字母数组
     studyCount: 0, //练习单词数量
     rightCount: 0, //练习正确数量
     errorCount: 0, //练习错误数量
+    rightLetters: [], // 练习正确的单词数组
     isPlay: false, //是否开始标识
     levelNum: 'level1', // 练习级别
     my_user: '', // 当前用户
@@ -37,7 +38,7 @@ var app = new Vue({
       let endIndex = length > 3 ? 3 : 2
       let repStr = length >3 ? '_ _' : '_'
       let testL = {
-        '幼儿': value,
+        '幼儿': value.replace(value.slice(0, 1), '_'),
         '学霸': value.replace(value.slice(1, endIndex), repStr),
         '学神': ' '
       }
@@ -69,7 +70,6 @@ var app = new Vue({
     loadLetter: function(){
       if (this.testMode == '测试'){
         this.isSpeak = true;
-
       }
       this.letterPop = this.letterDb.pop()
       console.log(this.letterPop)
@@ -107,16 +107,17 @@ var app = new Vue({
     theEnd: function(){
       this.letterPop = ''
       this.message="The End！"
-      this.note = "你这次一共练习" + this.studyCount +"个单词，正确" + this.rightCount + "个,按Ctrl键重新开始！";
-      this.myInfo.exerciseCount = parseInt(this.myInfo.exerciseCount) + 1;
-      this.myInfo.studyLetters = parseInt(this.myInfo.studyLetters) + this.studyCount;
+      this.note = "你这次一共练习" + this.studyCount +"个单词，正确" + this.rightCount + "个,按Ctrl键重新开始！"
+      this.myInfo.exerciseCount = parseInt(this.myInfo.exerciseCount) + 1
+      this.myInfo.studyLetters = parseInt(this.myInfo.studyLetters) + this.studyCount
       if (this.testMode === '测试'){
-        this.myInfo.knowLetters = parseInt(this.myInfo.knowLetters) + this.rightCount;
+        this.myInfo.knowLetters = parseInt(this.myInfo.knowLetters) + this.rightCount
+        this.myInfo.knowLetterList = this.myInfo.knowLetterList.concat(this.rightLetters) //合并数组
       }
       localStorage.setItem(this.my_user, JSON.stringify(this.myInfo))
-      this.isPlay = false;
-      this.speakText("The End!");
-      this.speakText(note);
+      this.isPlay = false
+      this.speakText("The End!")
+      this.speakText(note)
     }
   },
 });

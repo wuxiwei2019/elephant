@@ -52,6 +52,7 @@ $(document).ready(function(){
         console.log(app.levelNum);
         app.init();
     });
+    // localStorage读出用户信息
     app.my_user = localStorage.my_user;
     // 应用开始首先要弹出呢称输入框
     $('#myModal').modal('show');
@@ -106,6 +107,8 @@ $(document).ready(function(){
         if(app.letterPop == app.inputStr.join("")){
             //$("#message").text("你真棒!");
             app.rightCount ++;
+            app.rightLetters.push(app.letterPop);
+            console.log("rightLetters:", app.rightLetters);
             app.speakText("excellent");
              
         }else{
