@@ -14,8 +14,9 @@ var app = new Vue({
       startTime: '2021年4月5日',
       exerciseCount: 0 , // 练习次数
       studyLetters: 0,  // 练习单词总数量
-      knowLetters: 0,  // 掌握单词数量
-      knowLetterList: [] //掌握单词库
+      studyLetterList: [], // 练习过的单词库
+      knowLetters: 0,  // 已掌握单词数量
+      knowLetterList: [] //已掌握的单词库
     },
     letterDb: [], //加载的单词库
     letterPop: '', //新单词
@@ -37,6 +38,7 @@ var app = new Vue({
     testLevel: '幼儿',
     levelRange: [10,20],
     dialogFormVisible: false,
+    dialogFormVisible2: false,
     form: {
       name: '',
       region: '',
@@ -47,7 +49,24 @@ var app = new Vue({
       resource: '',
       desc: ''
     },
-    formLabelWidth: '120px'
+    formLabelWidth: '120px',
+    levelGroup:{ // 成绩
+      level1: 0,
+      level2: 0,
+      level3: 0,
+      level4: 0,
+      level5: 0,
+      level6: 0,
+    },
+    levelGroup2:{ //练习
+      level1: 0,
+      level2: 0,
+      level3: 0,
+      level4: 0,
+      level5: 0,
+      level6: 0,
+    }
+
   },
   filters: {
     filterLetterPop: function (value, testMode, testLevel) {
@@ -68,6 +87,41 @@ var app = new Vue({
     }
   },
   methods:{
+    // 计算每个级别掌握的单词数量 showLevelGroupInfo
+    showLevelGroupInfo: function(){
+      // 重置级别变量
+      this.levelGroup.level1 = 0;
+      this.levelGroup.level2 = 0;
+      this.levelGroup.level3 = 0;
+      this.levelGroup.level4 = 0;
+      this.levelGroup.level5 = 0;
+      this.levelGroup.level6 = 0;
+      for(var item of this.myInfo.knowLetterList){
+        for(var i of levelNameList){
+          if (letterDbs[i].indexOf(item)>=0){
+            this.levelGroup[i] ++;
+          }
+        }
+      }
+      this.dialogFormVisible = true
+    },
+    showLevelGroupInfo2: function(){
+      // 重置级别变量
+      this.levelGroup2.level1 = 0;
+      this.levelGroup2.level2 = 0;
+      this.levelGroup2.level3 = 0;
+      this.levelGroup2.level4 = 0;
+      this.levelGroup2.level5 = 0;
+      this.levelGroup2.level6 = 0;
+      for(var item of this.myInfo.studyLetterList){
+        for(var i of levelNameList){
+          if (letterDbs[i].indexOf(item)>=0){
+            this.levelGroup2[i] ++;
+          }
+        }
+      }
+      this.dialogFormVisible2 = true
+    },
     // 检测模式
     changeTestMode: function(){
       console.log('changeTestMode()', this.testMode)

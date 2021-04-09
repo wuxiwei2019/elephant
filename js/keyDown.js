@@ -39,6 +39,7 @@ $(document).ready(function(){
             app.myInfo.startTime = userInfo.startTime;
             app.myInfo.exerciseCount = userInfo.exerciseCount;
             app.myInfo.studyLetters = userInfo.studyLetters;
+            app.myInfo.studyLetterList = userInfo.studyLetterList === undefined ? [] : userInfo.studyLetterList;
             app.myInfo.knowLetters = userInfo.knowLetters;
             app.myInfo.knowLetterList = userInfo.knowLetterList === undefined ? [] :userInfo.knowLetterList;
         }else{
@@ -112,6 +113,7 @@ $(document).ready(function(){
         app.loadFingerImg(nb)
     }else if(event.keyCode == 13 || event.keyCode == 32){
         app.studyCount ++;
+        app.myInfo.studyLetterList.push(app.letterPop);
         console.log(app.letterPop, app.inputStr.join(""));
         if(app.letterPop == app.inputStr.join("")){
             //$("#message").text("你真棒!");

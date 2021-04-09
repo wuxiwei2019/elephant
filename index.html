@@ -88,8 +88,8 @@
             <div class="panel panel-info headerInfo">
                     <div class="panel-body">
                         <p>
-                            <el-button type="primary" round size="mini" @click="dialogFormVisible = true">我的成绩</el-button>
-                            <el-button type="primary" round size="mini">练习记录</el-button>
+                            <el-button type="primary" round size="mini" @click="showLevelGroupInfo">我的成绩</el-button>
+                            <el-button type="primary" round size="mini" @click="showLevelGroupInfo2">练习记录</el-button>
                         </p>
                         <p><span class="label label-danger">提示</span>:按Shift键可以提前结束哦!看到单词后直接敲击键盘,Enter或空格键确认输入</p>
                         <p><el-switch v-model="isSpeak" inactive-text="单词拼读"></el-switch></p>
@@ -155,21 +155,26 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
     </div>
-    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
-        <el-form :model="form">
-            <el-form-item label="活动名称" :label-width="formLabelWidth">
-                <el-input v-model="form.name" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="活动区域" :label-width="formLabelWidth">
-                <el-select v-model="form.region" placeholder="请选择活动区域">
-                    <el-option label="区域一" value="shanghai"></el-option>
-                    <el-option label="区域二" value="beijing"></el-option>
-                </el-select>
-            </el-form-item>
-        </el-form>
+    <el-dialog title="我的成绩" :visible.sync="dialogFormVisible" class="myDialog">
+        Level1：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level1"></el-progress>
+        Level2：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level2" status="success"></el-progress>
+        Level3：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level3" status="warning"></el-progress>
+        Level4：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level4" status="exception"></el-progress>
+        Level5：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level5"></el-progress>
+        Level6：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level6" status="success"></el-progress>
         <div slot="footer" class="dialog-footer">
-            <el-button @click="dialogFormVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+            <el-button type="primary" @click="dialogFormVisible = false">关闭</el-button>
+        </div>
+    </el-dialog>
+    <el-dialog title="我的练习" :visible.sync="dialogFormVisible2" class="myDialog">
+        Level1：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level1"></el-progress>
+        Level2：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level2" status="success"></el-progress>
+        Level3：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level3" status="warning"></el-progress>
+        Level4：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level4" status="exception"></el-progress>
+        Level5：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level5"></el-progress>
+        Level6：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level6" status="success"></el-progress>
+        <div slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="dialogFormVisible2 = false">关闭</el-button>
         </div>
     </el-dialog>
 </div>

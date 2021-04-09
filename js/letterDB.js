@@ -24,6 +24,7 @@ let letterDbs = {
      "green"
      ],
      
-}   
+}
+let levelNameList = ["level1","level2"];
 
  
