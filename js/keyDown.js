@@ -40,14 +40,14 @@ $(document).ready(function(){
             app.myInfo.exerciseCount = userInfo.exerciseCount;
             app.myInfo.studyLetters = userInfo.studyLetters;
             app.myInfo.knowLetters = userInfo.knowLetters;
-            app.myInfo.knowLetterList = userInfo.knowLetterList;
+            app.myInfo.knowLetterList = userInfo.knowLetterList === undefined ? [] :userInfo.knowLetterList;
         }else{
             app.myInfo.name=my_user;
             app.myInfo.startTime= new Date().format("yyyy年MM月dd日");
             localStorage.setItem(my_user, JSON.stringify(app.myInfo));
         }
 
-    }
+    };
     $(".level").click(function(event){
         // 加载单词级别库
         app.levelNum = $(this).attr("href").replace("#","");
@@ -72,7 +72,10 @@ $(document).ready(function(){
             }else{
                 localStorage.my_user = app.my_user;
                 $("#myModal").modal("hide");
-                alert("记住你的呢称，下次玩的时候好用。");
+                app.$message({
+                    message: '记住你的呢称，下次玩的时候好用。',
+                    type: 'success'
+                });
                 loadStudyInfo(app.my_user);
                 app.init();
             }
@@ -103,6 +106,10 @@ $(document).ready(function(){
         console.log(event.keyCode);
         app.inputStr.push(event.key);
         app.speakText(event.key);
+
+        const nb = app.findNextLetter(app.letterPop, app.inputStr.join("")) // 取的下一个字母
+        // 根据下一个字母更新键盘图片
+        app.loadFingerImg(nb)
     }else if(event.keyCode == 13 || event.keyCode == 32){
         app.studyCount ++;
         console.log(app.letterPop, app.inputStr.join(""));

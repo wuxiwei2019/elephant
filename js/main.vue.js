@@ -26,7 +26,8 @@ var app = new Vue({
     rightLetters: [], // 练习正确的单词数组
     isPlay: false, //是否开始标识
     isStudyAll: false, // 是否全量练习
-    isFinger: false, // 指法提醒
+    isFinger: true, // 指法提醒
+    imgFinger: 'img/finger.png', // 指法图片路径
     levelNum: 'level1', // 练习级别
     my_user: '', // 当前用户
     isSpeak: false, // 是否开启拼读
@@ -96,8 +97,24 @@ var app = new Vue({
         }
       }
       this.letterPop = letter
+      const nl = this.findNextLetter(this.letterPop, this.inputStr.join(""))
+      this.loadFingerImg(nl)
       console.log(this.letterPop)
       this.speakText(this.letterPop)
+    },
+    // 根据输入的内容取下一个字母
+    findNextLetter: function (letterPop, inputStr){
+      const i = letterPop.length - (letterPop.length - inputStr.length)
+      return letterPop.slice(i,i + 1)
+    },
+    // 根据字母加载指法图片
+    loadFingerImg: function(nl){
+      for(var item of fingers_keys){
+        console.log("键盘组：", item)
+        if(item.indexOf(nl) >=0 ){
+          this.imgFinger = fingers[item]
+        }
+      }
     },
     // 文字语言播放
     speakText: function(msgText){

@@ -74,10 +74,13 @@
                 </div>
                 <div class="row">
                     <div class="center">
+                        <p align="center">
+                            <img  :src="imgFinger" class="img-rounded img-responsive" v-show="isFinger && isPlay">
+                        </p>
                         <p><span id = "myLetter" class="orangeText" v-show="isPlay"> {{ letterPop | filterLetterPop(testMode,testLevel) }}</span><el-button type="success" icon="el-icon-headset" v-show="isPlay" v-on:click="speakText(letterPop)" circle></el-button><small id="myWord"></small></p>
                         <p><span id = "message" class="orangeText"> {{ message }}</span></p>
                         <p id = "note"> {{ note }}</p>
-                        <p><span id = "myInput">{{ inputStr.join("") }}</span></p> 
+                        <p>&nbsp;<span id = "myInput">{{ inputStr.join("") }}</span></p>
                     </div>
                 </div>
         </div>
@@ -171,6 +174,7 @@
     </el-dialog>
 </div>
 <!--自定义的vue对象必须在组件加载完成的才能引入，否则提示找到组件。-->
+<script src="js/fingers.js"></script>
 <script src="js/main.vue.js"></script>
 <script src="js/keyDown.js"></script>
 </body>
