@@ -150,11 +150,19 @@ var app = new Vue({
           letter = this.letterDb.pop()
         }
       }
-      this.letterPop = letter
-      const nl = this.findNextLetter(this.letterPop, this.inputStr.join(""))
-      this.loadFingerImg(nl)
-      console.log(this.letterPop)
-      this.speakText(this.letterPop)
+      if (letter === undefined) {
+        this.$message({
+          type: 'error',
+          message: this.levelNum + '级词库在【' + this.testMode + '】下已练习完，可以选择全量练习或下一级'
+        })
+      }else{
+        this.letterPop = letter
+        const nl = this.findNextLetter(this.letterPop, this.inputStr.join(""))
+        this.loadFingerImg(nl)
+        console.log(this.letterPop)
+        this.speakText(this.letterPop)
+      }
+
     },
     // 根据输入的内容取下一个字母
     findNextLetter: function (letterPop, inputStr){
@@ -217,5 +225,5 @@ var app = new Vue({
   },
 });
 
-app.loadLetterDb(letterDbs);
-app.loadLetter();
+//app.loadLetterDb(letterDbs);
+//app.loadLetter();

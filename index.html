@@ -94,8 +94,12 @@
                         <p><span class="label label-danger">提示</span>:按Shift键可以提前结束哦!看到单词后直接敲击键盘,Enter或空格键确认输入</p>
                         <p><el-switch v-model="isSpeak" inactive-text="单词拼读"></el-switch></p>
                         <p><el-switch v-model="isFinger" inactive-text="指法提示"></el-switch></p>
-                        <p><el-switch v-model="isStudyAll" inactive-text="特殊训练" active-text="全量练习"></el-switch></p>
-                        <p>模式选择：<el-radio-group v-model="testMode" size="mini" v-on:change="changeTestMode">
+                        <p title="特殊练习：只对测试中未掌握的单词进行练习。全量练习：按照顺逐一开始" data-toggle="tooltip"
+                           data-placement="top" >
+                            <el-switch v-model="isStudyAll" inactive-text="特殊训练" active-text="全量练习"></el-switch></p>
+                        <p title="测试可以验证你英语单词学习的情况" data-toggle="tooltip"
+                           data-placement="top" >
+                            模式选择：<el-radio-group v-model="testMode" size="mini" v-on:change="changeTestMode">
                             <el-radio-button label="练习"></el-radio-button>
                             <el-radio-button label="测试"></el-radio-button>
                         </el-radio-group></p>

@@ -49,6 +49,11 @@ $(document).ready(function(){
         }
 
     };
+    function refreshFingerImg(){
+        const nb = app.findNextLetter(app.letterPop, app.inputStr.join("")) // 取的下一个字母
+        // 根据下一个字母更新键盘图片
+        app.loadFingerImg(nb)
+    };
     $(".level").click(function(event){
         // 加载单词级别库
         app.levelNum = $(this).attr("href").replace("#","");
@@ -103,15 +108,15 @@ $(document).ready(function(){
     console.log(event.keyCode);
     if(event.keyCode == 8 ){
         app.inputStr.pop();
+        refreshFingerImg();
     }else if (event.keyCode >= 65 && event.keyCode <= 90 ){
         // 只能输入字母
         console.log(event.keyCode);
         app.inputStr.push(event.key);
         app.speakText(event.key);
 
-        const nb = app.findNextLetter(app.letterPop, app.inputStr.join("")) // 取的下一个字母
-        // 根据下一个字母更新键盘图片
-        app.loadFingerImg(nb)
+        refreshFingerImg();
+
     }else if(event.keyCode == 13 || event.keyCode == 32){
         app.studyCount ++;
         app.myInfo.studyLetterList.push(app.letterPop);
