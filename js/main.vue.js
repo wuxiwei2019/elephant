@@ -191,9 +191,9 @@ var app = new Vue({
       this.errorCount = 0
       this.message =''
       this.note = ''
-      this.loadLetterDb(letterDbs);
-      this.loadLetter();
-      this.isPlay = true;
+      this.loadLetterDb(letterDbs)
+      this.loadLetter()
+      this.isPlay = true
     },
     resetLoad: function(){
       this.init();

@@ -73,10 +73,11 @@ $(document).ready(function(){
             }else{
                 localStorage.my_user = app.my_user;
                 $("#myModal").modal("hide");
-                app.$message({
-                    message: '记住你的呢称，下次玩的时候好用。',
-                    type: 'success'
-                });
+                // app.$message({
+                //     message: '记住你的呢称，下次玩的时候好用。',
+                //     type: 'success'
+                // });
+
                 loadStudyInfo(app.my_user);
                 app.init();
             }
