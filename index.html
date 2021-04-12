@@ -182,6 +182,22 @@
         </div>
     </el-dialog>
 </div>
+<!--精灵 start*-->
+<script src="lib/spig.js"></script>
+<div id="spig" class="spig">
+    <div id="spig_message">……</div>
+    <div id="mumu" class="mumu"></div>
+</div>
+
+<script type="text/javascript">
+    var isindex=true;
+    var title="大象英语";
+    var visitor="小主人";
+    if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) { //移动端
+        $('#spig').hide();;
+    }
+</script>
+<!--精灵end*-->
 <!--自定义的vue对象必须在组件加载完成的才能引入，否则提示找到组件。-->
 <script src="lib/fingers.js"></script>
 <script src="lib/main.vue.js"></script>

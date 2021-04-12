@@ -56,3 +56,44 @@ span.orangeText{
 .myDialog{
     text-align: left;
 }
+
+/********博客精灵********/
+.spig {
+    display: block;
+    width: 120px;
+    height: 156px;
+    position: absolute;
+    bottom: 300px;
+    left: 180px;
+    z-index: 9999;
+}
+
+#spig_message {
+    color: #191919;
+    border: 1px solid #c4c4c4;
+    background: #ddd;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    min-height: 1em;
+    padding: 5px;
+    top: -45px;
+    position: absolute;
+    text-align: center;
+    width: auto !important;
+    z-index: 10000;
+    -moz-box-shadow: 0 0 15px #eeeeee;
+    -webkit-box-shadow: 0 0 15px #eeeeee;
+    border-color: #eeeeee;
+    box-shadow: 0 0 15px #eeeeee;
+    outline: none;
+}
+
+.mumu {
+    width: 120px;
+    height: 146px;
+    cursor: move;
+    background: url('http://images.cnblogs.com/cnblogs_com/caoleiCoding/921220/o_spig.gif')
+    no-repeat;
+}
+/********博客精灵end********/
