@@ -161,23 +161,27 @@
         </div><!-- /.modal -->
     </div>
     <el-dialog title="我的成绩" :visible.sync="dialogFormVisible" class="myDialog">
-        Level1：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level1"></el-progress>
-        Level2：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level2" status="success"></el-progress>
-        Level3：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level3" status="warning"></el-progress>
-        Level4：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level4" status="exception"></el-progress>
-        Level5：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level5"></el-progress>
-        Level6：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level6" status="success"></el-progress>
+        Level1：{{ levelLetterCount[0] }}个<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level1"></el-progress>
+        Level2：{{ levelLetterCount[1] }}个<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level2" status="success"></el-progress>
+        Level3：{{ levelLetterCount[2] }}个<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level3" status="warning"></el-progress>
+        Level4：{{ levelLetterCount[3] }}个<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level4" status="exception"></el-progress>
+        Level5：{{ levelLetterCount[4] }}个<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level5"></el-progress>
+        Level6：{{ levelLetterCount[5] }}个<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup.level6" status="success"></el-progress>
+        <br>
+        <p> 一共有{{ levelLetters }}个单词</p>
         <div slot="footer" class="dialog-footer">
             <el-button type="primary" @click="dialogFormVisible = false">关闭</el-button>
         </div>
     </el-dialog>
     <el-dialog title="我的练习" :visible.sync="dialogFormVisible2" class="myDialog">
-        Level1：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level1"></el-progress>
-        Level2：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level2" status="success"></el-progress>
-        Level3：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level3" status="warning"></el-progress>
-        Level4：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level4" status="exception"></el-progress>
-        Level5：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level5"></el-progress>
-        Level6：<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level6" status="success"></el-progress>
+        Level1：{{ levelLetterCount[0] }}个<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level1"></el-progress>
+        Level2：{{ levelLetterCount[1] }}个<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level2" status="success"></el-progress>
+        Level3：{{ levelLetterCount[2] }}个<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level3" status="warning"></el-progress>
+        Level4：{{ levelLetterCount[3] }}个<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level4" status="exception"></el-progress>
+        Level5：{{ levelLetterCount[4] }}个<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level5"></el-progress>
+        Level6：{{ levelLetterCount[5] }}个<el-progress :text-inside="true" :stroke-width="26" :percentage="levelGroup2.level6" status="success"></el-progress>
+        <br>
+        <p> 一共有{{ levelLetters }}个单词</p>
         <div slot="footer" class="dialog-footer">
             <el-button type="primary" @click="dialogFormVisible2 = false">关闭</el-button>
         </div>
