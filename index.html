@@ -94,6 +94,7 @@
                         <p><span class="label label-danger">提示</span>:按Shift键可以提前结束哦!看到单词后直接敲击键盘,Enter或空格键确认输入</p>
                         <p><el-switch v-model="isSpeak" inactive-text="单词拼读"></el-switch></p>
                         <p><el-switch v-model="isFinger" inactive-text="指法提示"></el-switch></p>
+                        <p><el-switch v-model="myInfo.vip" inactive-text="默认语音" active-text="百度语音"></el-switch></p>
                         <p title="特殊练习：只对测试中未掌握的单词进行练习。全量练习：按照顺逐一开始" data-toggle="tooltip"
                            data-placement="top" >
                             <el-switch v-model="isStudyAll" inactive-text="特殊训练" active-text="全量练习"></el-switch></p>
@@ -147,14 +148,14 @@
                     <h4 class="modal-title" id="myModalLabel">大象英语</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="input-group">
+                    <div class="input-group" v-show="isOnLine">
                         <span class="input-group-addon">呢称</span>
                         <input type="text" id="username" v-model="my_user" class="form-control" placeholder="Emilier">
                     </div>
                     <div id="tip"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="submitUser">确定</button>
+                    <button type="button" class="btn btn-primary" id="submitUser" v-show="isOnLine">确定</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
