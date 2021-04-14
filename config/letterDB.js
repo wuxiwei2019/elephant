@@ -1,4 +1,4 @@
-let letterDbs = {
+const letterDbs = {
     // 三年级英语上册73个
     "level1": [
      "pen","pencil","pencil-case","ruler","eraser","crayon","book","bag","sharpener","school",
@@ -41,8 +41,49 @@ let letterDbs = {
      "puppy","gee","come","who","sister","brother","father","mother","baseball player",
      "driver","doctor","farmer","nurse","look","young"
     ],
+    // 四年级英语下册
+    "level4" : [
+     "playground","garden","teacher's-office","library","canteen","first","visitor","there","lunch","this way",
+     "that","art room","computer room","washroom","music room","gym","TV room","second","cool","English class",
+     "music class","breakfast","P.E. class","over","go to the playground","just a minute","go home","kid","run","get up",
+     "go to school","go to bed","ready","hurry","math","Chinese","china","England","English","P.E.","class",
+     "music","for","jacket","shirt","T-shirt","skirt","dress","sweater","whose","no",
+     "not","jeans","pants","parents","socks","shoes","shorts","these","those","what for",
+     "neighbour","colour","warm","cold","cool","hot","weather","weather report","wear",
+     "football","put on","rain","rainy","now","snow","snowy","wind","windy","cloud",
+     "cloudy","sun","sunny","not much","New York","matter","have to","colourful","pretty","cheap",
+     "expensive","sixty","seventy","hundred","how much","ninety-nine","sneakers","slippers","sandals","boots",
+     "want","pair","a pair of","son","sun","size","take","them","sheep","horse",
+     "hen","lamb","goat","cow","donkey","key","rabbit","pig","duck","tomoto",
+     "cucumber","potato","onion","carrot","fresh","there be"
+    ],
+    // 五年级英语上册
+    "level5": [
+     "Young","funny","tall","strong","kind","old","short","thin","Mr","like","strict","smart","active","quiet","very","but",
+     "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","day ","have","on","do homework","watch TV","read books",
+     "eggplant","fish","green beans","tofu","potato","tomato","for","lunch","we","tasty","sweet","sour","fresh","salty",
+     "favourite","they are","fruit","grape",
+     "Cook the meals","water the flowers","sweep the floor","clean the bedroom","make the bed","set the table",
+     "wash the clothes","do the dishes","use a computer",
+     "curtain","trash bin","closet","mirror","end table","bedroom","kitchen","bathroom","living room","in","on","under",
+     "near","behind","clothes",
+     "river","flower","grass","lake","forest","path","park","picture","house","bridge","tree","road","building","clean"
+    ],
+    // 五年级英语下册
+    "level6": [
+     "do morning exercises","eat breakfast","have English class","play sports","eat dinner","when","evening","get up",
+     "at","usually","noon","climb mountains","go shopping",
+     "play the piano","visit grandparents","go hiking","weekend","often","sometimes","spring","summer","fall","winter","season",
+     " which","best","swim","fly kites","skate"," make a snowman","plant trees","why","because","sleep","Jan./January",
+     "Feb./February","Mar./March","Apr./April","May","June","July","Aug./August","Sept./September","Oct./October","Nov./November",
+     "Dec./December","birthday","uncle","her","date","aw pictures","cook dinner","read a book","answer the phone",
+     "listen to music","clean the room","write a letter",
+     "write an e-mail","mom","grandpa","study","fly","jump","walk","run","swim","kangaroo","sleep","climb","fight",
+     "swing","drink water","take pictures","watch insects","pick up leaves",
+     "do an experiment","catch butterfly","honey","count insects","collect  leaves","write a report","play chess","have a picnic"
+    ]
      
 }
-let levelNameList = ["level1","level2","level3"];
+let levelNameList = ["level1","level2","level3","level4","level5","level6"];
 
  

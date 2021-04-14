@@ -1,3 +1,4 @@
+import f from '../config/letterDB.js'
 var checkNetwork ={
     template: '<div><img id="img-test" style="display:none;"/><div>'
 }
