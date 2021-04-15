@@ -27,6 +27,11 @@ span.orangeText{
     color:green;
     font-size: 80px;
 }
+.inputText{
+    opacity: 1;
+    border: 3px solid #5bc0de;
+    border-radius: 5px;
+}
 #username{
 }
 .userLine{

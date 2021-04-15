@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="panel panel-info studyInfo">
                         <div class="panel-heading">
-                            <h3 class="panel-title">练习区【<span v-html="levelNum"></span>】</h3>
+                            <h3 class="panel-title">练习区【<span v-html="levelNum + '-' + letterDb.length"></span>】</h3>
                         </div>
                         <div class="panel-body">
                               <div class="col-sm-6 col-lg-6">正确「<span id="right_label">{{ rightCount }}</span>」
@@ -77,10 +77,16 @@
                         <p align="center">
                             <img  :src="imgFinger" class="img-rounded img-responsive" v-show="isFinger && isPlay">
                         </p>
-                        <p><span id = "myLetter" class="orangeText" v-show="isPlay"> {{ letterPop | filterLetterPop(testMode,testLevel) }}</span><el-button type="success" icon="el-icon-headset" v-show="isPlay" v-on:click="speakText(letterPop)" circle></el-button><small id="myWord"></small></p>
+                        <p><span id = "myLetter" class="orangeText" v-show="isPlay" v-bind:style="{fontSize:letterSize+'px'}">
+                            {{ letterPop | filterLetterPop(testMode,testLevel) }}</span>
+                            <el-button type="success" icon="el-icon-headset" v-show="isPlay" v-on:click="speakText(letterPop)" circle>
+                            </el-button><small id="myWord"></small></p>
                         <p><span id = "message" class="orangeText"> {{ message }}</span></p>
                         <p id = "note"> {{ note }}</p>
-                        <p>&nbsp;<span id = "myInput">{{ inputStr.join("") }}</span></p>
+                        <div class="inputText" title="点击我再开始练习，否则键盘输入会出现异常情况" data-toggle="tooltip"
+                             data-placement="bottom" v-show="isPlay">&nbsp;
+                            <span id = "myInput" v-bind:style="{fontSize:letterSize+'px'}">{{ inputStr.join("") }}</span>
+                        </div>
                     </div>
                 </div>
         </div>
@@ -95,10 +101,10 @@
                         <p><el-switch v-model="isSpeak" inactive-text="单词拼读"></el-switch></p>
                         <p><el-switch v-model="isFinger" inactive-text="指法提示"></el-switch></p>
                         <p><el-switch v-model="myInfo.vip" inactive-text="默认语音" active-text="百度语音"></el-switch></p>
-                        <p title="特殊练习：只对测试中未掌握的单词进行练习。全量练习：按照顺逐一开始" data-toggle="tooltip"
+                        <p title="特殊练习：只对测试中未掌握的单词进行练习。全量练习：按照顺序逐一开始" data-toggle="tooltip"
                            data-placement="top" >
                             <el-switch v-model="isStudyAll" inactive-text="特殊训练" active-text="全量练习"></el-switch></p>
-                        <p title="测试可以验证你英语单词学习的情况" data-toggle="tooltip"
+                        <p title="「测试」可以验证你英语单词学习的情况" data-toggle="tooltip"
                            data-placement="top" >
                             模式选择：<el-radio-group v-model="testMode" size="mini" v-on:change="changeTestMode">
                             <el-radio-button label="练习"></el-radio-button>
@@ -109,27 +115,22 @@
                             <el-radio-button label="学霸"></el-radio-button>
                             <el-radio-button label="学神"></el-radio-button>
                         </el-radio-group></p>
-                        <p title="词库每级100个单词，1表示1-10，2表示11-20，以次类推！" data-toggle="tooltip"
+                        <p>
+                            词库：<el-select v-model="levelNum" placeholder="请选择" size="mini" style="width:50%">
+                                <el-option
+                                        v-for="item in levelNameList"
+                                        :key="item"
+                                        :label="item"
+                                        :value="item">
+                                </el-option>
+                            </el-select>
+                        <el-button type="danger" icon="el-icon-document"  @click="dialogFormVisible3=true" size="small" title="查看词库所有单词" data-toggle="tooltip" data-placement="top" circle ></el-button>
+                        </p>
+                        <p title="词库每级100个单词左右，1表示从第1个开始，2表示从第11个开始，以次类推！" data-toggle="tooltip"
                            data-placement="top" >
                             单词范围：<el-input-number v-model="levelRange"  :min="1" :max="10" label="描述文字" size="mini">
-                            </el-input-number>
+                        </el-input-number>
                         </p>
-                            词库：<div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">选择级别
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#level1" class="level">Level 1</a></li>
-                                <li><a href="#level2" class="level">Level 2</a></li>
-                                <li><a href="#level3" class="level">Level 3</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#level4" class="level">Level 4</a></li>
-                                <li><a href="#level5" class="level">Level 5</a></li>
-                                <li><a href="#level6" class="level">Level 6</a></li>
-                            </ul>
-                            </div>
-
-
                     </div>
                 <!--<button type="button" class="btn btn-info" id="exit">Exit</button>-->
             </div>
@@ -190,6 +191,16 @@
         <br>
         <div slot="footer" class="dialog-footer">
             <el-button type="primary" @click="dialogFormVisible2 = false">关闭</el-button>
+        </div>
+    </el-dialog>
+    <el-dialog title="单词表" :visible.sync="dialogFormVisible3" class="myDialog">
+        <p><span class="label label-success" style="margin-right: 10px">{{ levelNum }}</span>一共有{{ letterDb.length }}个单词</p>
+        <ul class="list-inline" >
+            <li v-for="letter in letterDb">{{ letter }}</li>
+        </ul>
+        <br>
+        <div slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="dialogFormVisible3 = false">关闭</el-button>
         </div>
     </el-dialog>
     <!--  Dialog 单词级别  end -->
