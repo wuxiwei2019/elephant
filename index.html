@@ -119,9 +119,11 @@
                             词库：<el-select v-model="levelNum" placeholder="请选择" size="mini" style="width:50%">
                                 <el-option
                                         v-for="item in levelNameList"
-                                        :key="item"
-                                        :label="item"
-                                        :value="item">
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                    <span style="float: left">{{ item.value }}</span>
+                                    <span style="float: right; color: #8492a6; font-size: 10px">{{ item.label }}</span>
                                 </el-option>
                             </el-select>
                         <el-button type="danger" icon="el-icon-document"  @click="dialogFormVisible3=true" size="small" title="查看词库所有单词" data-toggle="tooltip" data-placement="top" circle ></el-button>
@@ -183,6 +185,7 @@
             <el-button type="primary" @click="dialogFormVisible = false">关闭</el-button>
         </div>
     </el-dialog>
+    <!--    -->
     <el-dialog title="我的练习" :visible.sync="dialogFormVisible2" class="myDialog">
         <p> 一共有{{ levelLetters }}个单词</p>
         <template v-for="(value,key,index) in levelGroup2">
@@ -194,9 +197,9 @@
         </div>
     </el-dialog>
     <el-dialog title="单词表" :visible.sync="dialogFormVisible3" class="myDialog">
-        <p><span class="label label-success" style="margin-right: 10px">{{ levelNum }}</span>一共有{{ letterDb.length }}个单词</p>
+        <p><span class="label label-success" style="margin-right: 10px">{{ levelNum }}</span>一共有{{ letterDbs[levelNum].length }}个单词</p>
         <ul class="list-inline" >
-            <li v-for="letter in letterDb">{{ letter }}</li>
+            <li v-for="letter in letterDbs[levelNum]">{{ letter }}</li>
         </ul>
         <br>
         <div slot="footer" class="dialog-footer">

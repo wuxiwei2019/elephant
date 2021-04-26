@@ -74,16 +74,48 @@ const letterDbs = {
      "do morning exercises","eat breakfast","have English class","play sports","eat dinner","when","evening","get up",
      "at","usually","noon","climb mountains","go shopping",
      "play the piano","visit grandparents","go hiking","weekend","often","sometimes","spring","summer","fall","winter","season",
-     " which","best","swim","fly kites","skate"," make a snowman","plant trees","why","because","sleep","Jan./January",
-     "Feb./February","Mar./March","Apr./April","May","June","July","Aug./August","Sept./September","Oct./October","Nov./November",
-     "Dec./December","birthday","uncle","her","date","aw pictures","cook dinner","read a book","answer the phone",
+     " which","best","swim","fly kites","skate"," make a snowman","plant trees","why","because","sleep","January",
+     "February","March","April","May","June","July","August","September","October","November",
+     "December","birthday","uncle","her","date","aw pictures","cook dinner","read a book","answer the phone",
      "listen to music","clean the room","write a letter",
      "write an e-mail","mom","grandpa","study","fly","jump","walk","run","swim","kangaroo","sleep","climb","fight",
      "swing","drink water","take pictures","watch insects","pick up leaves",
      "do an experiment","catch butterfly","honey","count insects","collect  leaves","write a report","play chess","have a picnic"
+    ],
+    // 斑马英语
+    "level9":[
+    "apple","banana","peach","Monkey","panda","deer","Eye","nose","mouth",
+    "Face","ear","hair","Hand","arm","foot","Head","leg","toe","Mommy","daddy","sister",
+    "Grandma","grandpa","brother","Cat","dog","baby","Doll","ball","teddy","bear",
+    "Shirt","pants","dress","Shoes","socks","mittens","Coat","hat","scarf","Wash","brush","comb",
+    "Bread","jam","milk","Hot","water","cold","Cup","spoon","plate","apple","banana","orange",
+    "Door","wall","table","Chair","sofa","bed","Sit","watch","smile","Hug","kiss","sleep",
+    "Red","green","yellow","","Bike","car","bus","Plane","ship","train","Walk","run","fly",
+    "One","two","three","Jump","Swim","row","Hello","morning"
     ]
      
 }
-let levelNameList = ["level1","level2","level3","level4","level5","level6"];
+let levelNameList =  [{
+    value: 'level1',
+    label: '三年级上册'
+}, {
+    value: 'level2',
+    label: '三年级下册'
+}, {
+    value: 'level3',
+    label: '四年级上册'
+}, {
+    value: 'level4',
+    label: '四年级下册'
+}, {
+    value: 'level5',
+    label: '五年级上册'
+}, {
+    value: 'level6',
+    label: '五年级下册'
+},{
+    value: 'level9',
+    label: '斑马英语-L1'
+}];
 
  
